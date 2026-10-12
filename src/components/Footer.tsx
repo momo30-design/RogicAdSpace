@@ -5,9 +5,10 @@ interface FooterProps {
   onExplore: () => void;
   onHowItWorks: () => void;
   onListModal: () => void;
+  onVercelModal?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onExplore, onHowItWorks, onListModal }) => {
+export const Footer: React.FC<FooterProps> = ({ onExplore, onHowItWorks, onListModal, onVercelModal }) => {
   return (
     <footer className="border-t border-neutral-200 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -27,6 +28,18 @@ export const Footer: React.FC<FooterProps> = ({ onExplore, onHowItWorks, onListM
               <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
               <span>Automated Escrow Protocol</span>
             </div>
+            {onVercelModal && (
+              <button
+                type="button"
+                onClick={onVercelModal}
+                className="mt-2 inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-900 bg-neutral-100 hover:bg-neutral-200 px-2.5 py-1 rounded-md transition-colors cursor-pointer"
+              >
+                <svg className="w-3 h-3 fill-current" viewBox="0 0 1155 1000">
+                  <path d="m577.3 0 577.4 1000H0z" />
+                </svg>
+                <span>Vercel Integration</span>
+              </button>
+            )}
           </div>
 
           <div className="space-y-2 text-xs">

@@ -14,6 +14,7 @@ import { AdvertiserDashboard } from './components/AdvertiserDashboard';
 import { CreatorDashboard } from './components/CreatorDashboard';
 import { ListNewPageModal } from './components/ListNewPageModal';
 import { HowItWorksModal } from './components/HowItWorksModal';
+import { VercelIntegrationModal } from './components/VercelIntegrationModal';
 import { Footer } from './components/Footer';
 import { 
   Search, SlidersHorizontal, CheckCircle2, ShieldCheck, 
@@ -74,6 +75,7 @@ export default function App() {
   const [bookingContext, setBookingContext] = useState<{ page: FacebookPage; slot?: AdSlotOption } | null>(null);
   const [showListModal, setShowListModal] = useState(false);
   const [showHowItWorksModal, setShowHowItWorksModal] = useState(false);
+  const [showVercelModal, setShowVercelModal] = useState(false);
   const [notificationToast, setNotificationToast] = useState<string | null>(null);
 
   const showToast = (msg: string) => {
@@ -570,6 +572,7 @@ export default function App() {
         }}
         onHowItWorks={() => setShowHowItWorksModal(true)}
         onListModal={() => setShowListModal(true)}
+        onVercelModal={() => setShowVercelModal(true)}
       />
 
       {/* Page Detail Modal */}
@@ -611,6 +614,13 @@ export default function App() {
         <HowItWorksModal
           onClose={() => setShowHowItWorksModal(false)}
           onExplore={() => setActiveTab('explore')}
+        />
+      )}
+
+      {/* Vercel Integration Modal */}
+      {showVercelModal && (
+        <VercelIntegrationModal
+          onClose={() => setShowVercelModal(false)}
         />
       )}
     </div>
