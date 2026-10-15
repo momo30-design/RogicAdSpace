@@ -3,18 +3,24 @@ export type AdSlotFormat =
   | 'reel_feature'
   | 'story_swipe'
   | 'group_pinned'
-  | 'cover_takeover';
+  | 'cover_takeover'
+  | 'bundle_blitz';
 
-export interface AdSlotOption {
+export type ProductTier = 'economy' | 'standard' | 'express_priority' | 'all_inclusive_bundle';
+
+export interface StandardizedProduct {
   id: string;
   format: AdSlotFormat;
-  name: string;
+  tier: ProductTier;
+  title: string;
+  badge?: string; // e.g. "⚡ Most Popular" or "🚀 Fast 24h Delivery"
   description: string;
   price: number; // in USD
-  turnaroundDays: number;
-  durationDays: number; // e.g. permanent or 7 days
+  turnaroundHours: number; // e.g. 24, 48, 72
+  estimatedBroadcastTime: string; // e.g. "Tomorrow at 6:00 PM (Peak Reach)"
   deliverables: string[];
   bestFor: string;
+  isPopular?: boolean;
 }
 
 export interface AudienceDemographics {
@@ -26,6 +32,18 @@ export interface AudienceDemographics {
     male: number;
     female: number;
   };
+}
+
+export interface CreatorStore {
+  storeSlug: string; // e.g. "techpulse" -> /store/techpulse
+  storeTitle: string;
+  tagline: string;
+  announcement?: string;
+  facebookPageUrl: string;
+  responseTimeMinutes: number; // e.g. 15 (Average response time)
+  acceptanceRate: number; // e.g. 98%
+  products: StandardizedProduct[];
+  bioNotice?: string;
 }
 
 export interface FacebookPage {
@@ -46,6 +64,7 @@ export interface FacebookPage {
   pageCreationYear: number;
   demographics: AudienceDemographics;
   slots: AdSlotOption[];
+  store: CreatorStore;
   featuredPostPreview?: {
     caption: string;
     likes: string;
@@ -54,14 +73,26 @@ export interface FacebookPage {
   };
 }
 
+export interface AdSlotOption {
+  id: string;
+  format: AdSlotFormat;
+  name: string;
+  description: string;
+  price: number; // in USD
+  turnaroundDays: number;
+  durationDays: number; // e.g. permanent or 7 days
+  deliverables: string[];
+  bestFor: string;
+}
+
 export type BookingStatus =
-  | 'pending_creator_review'
-  | 'accepted'
-  | 'draft_submitted'
+  | 'pending_creator_review' // Dispatched to Creator
+  | 'accepted'              // Driver Accepted
+  | 'draft_submitted'       // En Route / Draft in review
   | 'revision_requested'
   | 'scheduled'
-  | 'published_live'
-  | 'completed_payout';
+  | 'published_live'        // Arrived / Live on Facebook
+  | 'completed_payout';     // Ride Finished & Paid
 
 export interface CampaignMessage {
   id: string;
@@ -77,9 +108,11 @@ export interface BookingOrder {
   pageName: string;
   pageHandle: string;
   pageAvatar: string;
+  storeSlug: string;
   slotId: string;
   slotName: string;
   slotFormat: AdSlotFormat;
+  tier?: ProductTier;
   
   // Advertiser Info
   businessName: string;
@@ -92,6 +125,7 @@ export interface BookingOrder {
   mediaUrl?: string;
   talkingPoints: string;
   targetDate: string;
+  estimatedBroadcastTime?: string;
   
   // Escrow & Financials
   slotPrice: number;
@@ -122,4 +156,14 @@ export interface CreatorWallet {
   escrowPendingBalance: number;
   totalEarned: number;
   payoutAccount: string;
+}
+
+export type ThemePalette = 'violet' | 'emerald' | 'sapphire' | 'amber' | 'rose';
+
+export interface ThemeOption {
+  id: ThemePalette;
+  name: string;
+  primaryColor: string;
+  gradient: string;
+  dotClass: string;
 }

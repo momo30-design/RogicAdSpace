@@ -88,6 +88,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
         pageName: page.name,
         pageHandle: page.handle,
         pageAvatar: page.avatarImage,
+        storeSlug: page.store?.storeSlug || page.handle.replace('@', ''),
         slotId: selectedSlot.id,
         slotName: selectedSlot.name,
         slotFormat: selectedSlot.format,
@@ -477,7 +478,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
               <button
                 type="button"
                 onClick={() => setStep(2)}
-                className="px-5 py-2.5 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors cursor-pointer flex items-center gap-1.5 shadow-xs"
+                className="theme-btn-gradient px-5 py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer flex items-center gap-1.5 shadow-sm"
               >
                 <span>Continue to Escrow Checkout</span>
                 <ArrowRight className="w-3.5 h-3.5" />

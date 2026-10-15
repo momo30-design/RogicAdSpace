@@ -91,7 +91,7 @@ export const AdvertiserDashboard: React.FC<AdvertiserDashboardProps> = ({
         <button
           type="button"
           onClick={onExploreMore}
-          className="self-start md:self-auto px-4 py-2 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors cursor-pointer flex items-center gap-1.5 shadow-xs"
+          className="self-start md:self-auto theme-btn-gradient px-4 py-2 text-xs font-bold rounded-xl transition-all cursor-pointer flex items-center gap-1.5 shadow-sm"
         >
           <span>Find More Facebook Ad Slots</span>
           <ArrowUpRight className="w-4 h-4" />

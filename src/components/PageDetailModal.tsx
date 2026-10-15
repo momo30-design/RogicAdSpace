@@ -197,7 +197,7 @@ export const PageDetailModal: React.FC<PageDetailModalProps> = ({
                       <button
                         type="button"
                         onClick={() => onSelectSlotToBook(page, slot)}
-                        className="px-4 py-2 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors cursor-pointer flex items-center gap-1.5 shadow-xs"
+                        className="theme-btn-gradient px-4 py-2 text-xs font-bold rounded-xl transition-all cursor-pointer flex items-center gap-1.5 shadow-sm"
                       >
                         <span>Book This Slot</span>
                         <ArrowRight className="w-3.5 h-3.5" />

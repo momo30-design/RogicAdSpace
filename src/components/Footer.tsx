@@ -16,10 +16,13 @@ export const Footer: React.FC<FooterProps> = ({ onExplore, onHowItWorks, onListM
           
           <div className="space-y-3 md:col-span-1">
             <div className="flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-blue-600 text-white flex items-center justify-center font-extrabold text-sm">
+              <span 
+                style={{ background: 'linear-gradient(135deg, var(--theme-gradient-from), var(--theme-gradient-to))' }}
+                className="w-7 h-7 rounded-lg text-white flex items-center justify-center font-extrabold text-sm shadow-xs"
+              >
                 A
               </span>
-              <span className="text-base font-bold text-neutral-950">AdSpace</span>
+              <span className="text-base font-extrabold text-slate-950 tracking-tight">AdSpace</span>
             </div>
             <p className="text-xs text-neutral-500 leading-relaxed">
               The premier marketplace connecting high-growth businesses directly with verified Facebook creators and community page owners.
